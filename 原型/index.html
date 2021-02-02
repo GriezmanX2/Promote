@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>原型</title>
+</head>
+<body>
+    <script>
+        function Person(){
+
+        }
+
+        let peter = new Person();
+
+        document.write('peter.__proto__ === Person.prototype: ',peter.__proto__ === Person.prototype)
+        document.write('<br/>');
+        document.write('Person === Person.prototype.constructor: ',Person === Person.prototype.constructor)
+</script>
+</body>
+</html>
