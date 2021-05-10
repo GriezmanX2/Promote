@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bind</title>
+</head>
+<body>
+    <script>
+        Function.prototype.customApply = function(context,arr){
+            var context = context || window;
+            context.fn = this;
+
+            var rs;
+            if(arr){
+                var args = [];
+
+                for(var i = 0;len = arr.length,i < len;i++){
+                    args.push('arr[' + i + ']');
+                }
+
+                rs = eval('context.fn(' + args +')');
+            }else{
+                rs = context.fn();
+            }
+
+            delete context.fn;
+            return rs;
+        };
+
+
+        Function.prototype.bind = function(context){
+            var self = this;
+            var args = Array.prototype.slice.call(arguments,1);
+
+            return function(){
+                var bindArgs = Array.prototype.slice.call(arguments);
+                self.apply(context,args.concat(bindArgs));
+            };
+        }
+        let arrayLikeObj = {
+            0: 1,
+            1: 2,
+            2: 3,
+            length: 3,
+        };
+
+        (Array.prototype.map.bind(arrayLikeObj,item => {
+            console.log('item',item);
+        }))();
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>属性标志</title>
+</head>
+<body>
+    <script>
+        let obj = {};
+
+        console.log('ds',Object.getOwnPropertyDescriptor(obj,'name'));
+        
+        //  writable 是否可以修改
+        //  enumerable 是否可迭代
+        //  configurable 是否可以修改属性标志
+        //  首次定义属性 默认为false
+        Object.defineProperty(obj,'name',{
+            value: 'torres',
+        });
+
+        console.log('ds',Object.getOwnPropertyDescriptor(obj,'name'));
+
+        obj.name = 'shev';
+
+        console.log('ds',Object.getOwnPropertyDescriptor(obj,'name'));
+
+        //  修改属性为不可配置是单向的，无法再次修改为可配置
+        //  1.不能修改configurable标志；
+        //  2.不能修改enumrable标志;
+        //  3.不能将writable修改为true，但反向可以;
+        //  4.不能修改访问者属性的getter/setter,但如果没有可以分配它们；
+
+    </script>
+</body>
+</html>
