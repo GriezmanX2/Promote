@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise</title>
+</head>
+<body>
+    <script>
+        let p1 = new Promise(function(resolve,reject){
+            setTimeout(function(){
+                console.log('触发1秒定时器');
+                resolve(1);
+
+            },1000);
+        });
+
+        let p2 = new Promise(function(resolve,reject){
+            setTimeout(function(){
+                console.log('触发2秒定时器');
+                resolve(2);
+
+            },2000);
+        });
+
+        let p3 = new Promise(function(resolve,reject){
+            setTimeout(function(){
+                console.log('触发3秒定时器');
+                resolve(3);
+            },3000);
+        });
+
+        Promise.all([p1,p2,p3]).then(function(){
+            console.log('Promise all');
+            console.log('arguments',...arguments);
+        })
+    </script>
+</body>
+</html>
